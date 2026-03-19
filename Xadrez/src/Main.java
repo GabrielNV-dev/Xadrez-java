@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int x, y, DestinoX, DestinoY;
-
         String[][] tabuleiro = new String[8][8];//Cria o tabuleiro com uma matriz
 
         String[] pretas = {" t ", " c ", "b< ", " d ", " r ", " >b", " c ", " t ", " p "};//Cria um vetor com as peças pretas
@@ -17,6 +16,7 @@ public class Main {
 
 
         for (int i = 0; i < tabuleiro.length; i++) {
+            System.out.print(i + "-");
             for (int t = 0; t < tabuleiro.length; t++) {// Uso de dois 'for' para imprimir o tabuleiro com base nas coordenadas
 
                 if (i == 0){
@@ -41,16 +41,22 @@ public class Main {
 
         }
         do {
-            System.out.println("Linha que deseja mexer:");//Pergunta para o usuário onde está a peça e para onde ele deseja ir
-            x = sc.nextInt();
-            System.out.println("Coluna que deseja mexer:");
-            y = sc.nextInt();
-            System.out.println("Linha que deseja jogar:");
-            DestinoX = sc.nextInt();
-            System.out.println("Coluna que deseja jogar:");
-            DestinoY = sc.nextInt();
+            System.out.print("Linha que deseja mexer: ");//Pergunta para o usuário onde está a peça e para onde ele deseja ir
+            x = sc.nextInt()-1;
+            System.out.print("Coluna que deseja mexer: ");
+            y = sc.nextInt()-1;
+            System.out.print("Linha que deseja jogar");
+            DestinoX = sc.nextInt()-1;
+            System.out.print("Coluna que deseja jogar: ");
+            DestinoY = sc.nextInt()-1;
+            if (x < 0 || x > 7 || y < 0 || y > 7 || DestinoX < 0 || DestinoX > 7 || DestinoY < 0 || DestinoY > 7 ){
+                System.out.println("Coordenadas não validas");
+            }
+        } while (x < 0 || x > 7 || y < 0 || y > 7 || DestinoX < 0 || DestinoX > 7 || DestinoY < 0 || DestinoY > 7 );
 
-        } while (x < 1 || x > 8 || y < 1 || y > 8 || DestinoX < 1 || DestinoX > 8 || DestinoY < 1 || DestinoY > 8 );
-
+        if (gerenciador.adm(tabuleiro, tabuleiro[x][y], x,y,DestinoX, DestinoY) == 1) {
+            tabuleiro[DestinoX][DestinoY] = tabuleiro[x][y];
+            tabuleiro[x][y] = "   ";
+        };
     }
 }
