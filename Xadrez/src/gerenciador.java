@@ -1,14 +1,11 @@
-import java.util.Arrays;
-import java.util.List;
-
 public class gerenciador {
-    public static int adm(String[][] tabuleiro, String peca, int x, int y, int destinoX, int destinoY) {
+    public static int adm(String[][] tabuleiro, String peca, int l, int c, int destinoL, int destinoC) {
 
         switch (peca){
             case " P ":
                 System.out.println(peca);
             case " T ":
-                System.out.println(peca);
+                System  .out.println(peca);
             case " C ":
                 System.out.println(peca);
             case "B< ":
