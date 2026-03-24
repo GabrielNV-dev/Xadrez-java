@@ -3,9 +3,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+
+    public static void vizualizar(String tabuleiro[][]) {
+        System.out.println("    1     2     3     4     5     6     7     8 ");
+        System.out.println("    |     |     |     |     |     |     |     |");
+        for (int i = 0; i < tabuleiro.length; i++){
+            System.out.print((i+1)+"-");
+            for (int t = 0; t < tabuleiro.length; t++){
+                System.out.print("(" + tabuleiro[i][t] + ") ");
+            }
+            System.out.println();
+        }
+    }
+        public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int x, y, DestinoX, DestinoY;
+        int l, c, DestinoL, DestinoC;
+
         String[][] tabuleiro = new String[8][8];//Cria o tabuleiro com uma matriz
 
         String[] pretas = {" t ", " c ", "b< ", " d ", " r ", " >b", " c ", " t ", " p "};//Cria um vetor com as peças pretas
@@ -14,10 +27,13 @@ public class Main {
         List<String> pecas_pretas = Arrays.asList(pretas);//Cria uma lista com o vetor das peças pretas
         List<String> pecas_brancas = Arrays.asList(brancas);//Cria uma lista com o vetor das peças brancas
 
-
+        // Uso de dois 'for' para imprimir o tabuleiro com base nas coordenadas
+        System.out.println("    1     2     3     4     5     6     7     8 ");
+        System.out.println("    |     |     |     |     |     |     |     | ");
         for (int i = 0; i < tabuleiro.length; i++) {
-            System.out.print(i + "-");
-            for (int t = 0; t < tabuleiro.length; t++) {// Uso de dois 'for' para imprimir o tabuleiro com base nas coordenadas
+            System.out.print((i+1)+"-");
+
+            for (int t = 0; t < tabuleiro.length; t++) {
 
                 if (i == 0){
                     tabuleiro[i][t] = pecas_pretas.get(t);//A primeira linha da matriz recebe os valores (da lista de peças pretas) das respectivas peças
@@ -40,23 +56,30 @@ public class Main {
             System.out.println();
 
         }
-        do {
-            System.out.print("Linha que deseja mexer: ");//Pergunta para o usuário onde está a peça e para onde ele deseja ir
-            x = sc.nextInt()-1;
-            System.out.print("Coluna que deseja mexer: ");
-            y = sc.nextInt()-1;
-            System.out.print("Linha que deseja jogar");
-            DestinoX = sc.nextInt()-1;
-            System.out.print("Coluna que deseja jogar: ");
-            DestinoY = sc.nextInt()-1;
-            if (x < 0 || x > 7 || y < 0 || y > 7 || DestinoX < 0 || DestinoX > 7 || DestinoY < 0 || DestinoY > 7 ){
-                System.out.println("Coordenadas não validas");
-            }
-        } while (x < 0 || x > 7 || y < 0 || y > 7 || DestinoX < 0 || DestinoX > 7 || DestinoY < 0 || DestinoY > 7 );
 
-        if (gerenciador.adm(tabuleiro, tabuleiro[x][y], x,y,DestinoX, DestinoY) == 1) {
-            tabuleiro[DestinoX][DestinoY] = tabuleiro[x][y];
-            tabuleiro[x][y] = "   ";
-        };
+        while (true){
+            //Pergunta para o usuário onde está a peça e para onde ele deseja ir
+            do {
+                System.out.println("Linha que deseja mexer:");
+                l = sc.nextInt()-1;
+                System.out.println("Coluna que deseja mexer:");
+                c = sc.nextInt()-1;
+                System.out.println("Linha que deseja jogar:");
+                DestinoL = sc.nextInt()-1;
+                System.out.println("Coluna que deseja jogar:");
+                DestinoC = sc.nextInt()-1;
+
+            } while (l < 0 || l > 7 || c <0 || c > 7 || DestinoL < 0 || DestinoL > 7 || DestinoC < 0 || DestinoC > 7 );
+
+            System.out.println(gerenciador.adm(tabuleiro, tabuleiro[l][c], l, c, DestinoL, DestinoC));
+            if (gerenciador.adm(tabuleiro, tabuleiro[l][c], l, c, DestinoL, DestinoC) == 1){
+                tabuleiro[DestinoL][DestinoC] = tabuleiro[l][c];
+                tabuleiro[l][c] = "   ";
+            } else {
+                System.out.println("Movimento invalido");
+            }
+            vizualizar(tabuleiro);
+
+        }
     }
 }
