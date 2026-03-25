@@ -5,19 +5,22 @@ public class Torre {
 
     // Navegar pela matriz para achar os pontos limites.
     for (int navegador = 1; (l+navegador) <= destinoL; navegador++){
-
         if (tabuleiro[l + navegador][c] != "   "){
+            System.out.println(destinoL + " a " + navegador);
             if (destinoL > navegador){
                 return 0;
             }
         }
     }
 
-
-
-
-
-
+        for (int navegador = 1; navegador < l; navegador++){
+            if (tabuleiro[l - navegador][c] != "   "){
+                System.out.println(destinoL + " a " + navegador);
+                if (destinoL < (l-navegador)){
+                    return 0;
+                }
+            }
+        }
 
     return 1;
     }
