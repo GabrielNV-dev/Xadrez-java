@@ -3,22 +3,27 @@ public class gerenciador {
 
         switch (peca){
             case " P ":
-                System.out.println(peca);
+            case " p ":
+                return peao.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case " T ":
-                System  .out.println(peca);
+            case " t ":
+                return Torre.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case " C ":
+            case " c ":
                 System.out.println(peca);
             case "B< ":
+            case " <B":
+            case "b< ":
+            case " <b":
                 System.out.println(peca);
             case " D ":
+            case " d ":
                 System.out.println(peca);
             case " R ":
+            case " r ":
                 System.out.println(peca);
-            case " >B":
-                System.out.println(peca);
-
         }
-        return 0;
+        return 404;
     }
 
 }
