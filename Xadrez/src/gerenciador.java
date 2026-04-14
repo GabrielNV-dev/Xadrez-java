@@ -12,9 +12,9 @@ public class gerenciador {
             case " c ":
                 return Cavalo.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case "B< ":
-            case " <B":
+            case " >B":
             case "b< ":
-            case " <b":
+            case " >b":
                  return Bispo.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case " D ":
             case " d ":
