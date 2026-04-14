@@ -10,15 +10,15 @@ public class gerenciador {
                 return Torre.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case " C ":
             case " c ":
-                System.out.println(peca);
+                return Cavalo.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case "B< ":
             case " <B":
             case "b< ":
             case " <b":
-                System.out.println(peca);
+                 return Bispo.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case " D ":
             case " d ":
-                System.out.println(peca);
+                 return Dama.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case " R ":
             case " r ":
                 System.out.println(peca);
