@@ -15,9 +15,9 @@ public class Main {
             System.out.println();
         }
     }
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int l, c, DestinoL, DestinoC;
+        int l, c, DestinoL, DestinoC; int turno = 2;
 
         String[][] tabuleiro = new String[8][8];//Cria o tabuleiro com uma matriz
 
@@ -56,7 +56,7 @@ public class Main {
             System.out.println();
 
         }
-
+        System.out.println("Branco começa");
         while (true){
             //Pergunta para o usuário onde está a peça e para onde ele deseja ir
             do {
@@ -69,12 +69,23 @@ public class Main {
                 System.out.println("Coluna que deseja jogar:");
                 DestinoC = sc.nextInt()-1;
 
+                if(pecas_pretas.contains(tabuleiro[l][c]) && (turno % 2 == 0)){
+                    System.out.println("Jogue com as suas peças!");
+                    vizualizar(tabuleiro);
+                    l = 1000;
+                } else if (pecas_brancas.contains(tabuleiro[l][c]) && (turno % 2 == 1)) {
+                    System.out.println("Jogue com as suas peças!");
+                    vizualizar(tabuleiro);
+                    l = 1000;
+                }
+
             } while (l < 0 || l > 7 || c <0 || c > 7 || DestinoL < 0 || DestinoL > 7 || DestinoC < 0 || DestinoC > 7 );
 
             System.out.println(gerenciador.adm(tabuleiro, tabuleiro[l][c], l, c, DestinoL, DestinoC));
             if (gerenciador.adm(tabuleiro, tabuleiro[l][c], l, c, DestinoL, DestinoC) == 1){
                 tabuleiro[DestinoL][DestinoC] = tabuleiro[l][c];
                 tabuleiro[l][c] = "   ";
+                turno++;
             } else {
                 System.out.println("Movimento invalido");
             }
