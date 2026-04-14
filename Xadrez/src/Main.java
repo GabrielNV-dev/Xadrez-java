@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -72,6 +73,7 @@ public class Main {
             }
         }
 
+        int[] roque = {0,0,0,0,0,0};
         vizualizar(tabuleiro);
         System.out.println("Branco começa");
         while (true){
@@ -103,11 +105,43 @@ public class Main {
 
             } while (l < 0 || l > 7 || c < 0 || c > 7 || DestinoL < 0 || DestinoL > 7 || DestinoC < 0 || DestinoC > 7 );
 
-            System.out.println(gerenciador.adm(tabuleiro, tabuleiro[l][c], l, c, DestinoL, DestinoC));
-            if (gerenciador.adm(tabuleiro, tabuleiro[l][c], l, c, DestinoL, DestinoC) == 1){
+            int lol = gerenciador.adm(tabuleiro, tabuleiro[l][c], l, c, DestinoL, DestinoC, roque);
+
+            if ( lol == 1){
+
+                if (tabuleiro[l][c].equals(" T ") && l == 7 && c == 0){
+                    roque[0] = 1;
+                } else if (tabuleiro[l][c].equals(" T ")  && l == 7 && c == 7) {
+                    roque[1] = 1;
+                } else if (tabuleiro[l][c].equals(" t ")  && l == 0 && c == 0) {
+                    roque[2] = 1;
+                } else if (tabuleiro[l][c].equals(" t ")  && l == 0 && c == 7) {
+                    roque[3] = 1;
+                } else if (tabuleiro[l][c].equals(" R ")  && l == 7 && c == 4) {
+                    roque[4] = 1;
+                } else if (tabuleiro[l][c].equals(" r ")  && l == 0 && c == 4) {
+                    roque[5] = 1;
+                }
+
+                tabuleiro[DestinoL][DestinoC] = tabuleiro[l][c];
+                tabuleiro[l][c] = "   ";
+                turno += 2;
+
+            } else if (lol == 2) {
+
                 tabuleiro[DestinoL][DestinoC] = tabuleiro[l][c];
                 tabuleiro[l][c] = "   ";
                 turno++;
+
+                if (tabuleiro[7][6] == " R ") {
+                    tabuleiro[7][7] = "   ";
+                    tabuleiro[7][5] = " T ";
+                } else if (tabuleiro[7][2] == " R ") {
+                    tabuleiro[7][0] = "   ";
+                    tabuleiro[7][3] = " T ";
+                }
+
+
             } else {
                 System.out.println("Movimento invalido");
             }
