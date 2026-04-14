@@ -21,7 +21,7 @@ public class gerenciador {
                  return Dama.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case " R ":
             case " r ":
-                System.out.println(peca);
+                 return Rei.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
         }
         return 404;
     }
