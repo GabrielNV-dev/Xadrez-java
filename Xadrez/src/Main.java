@@ -125,7 +125,7 @@ public class Main {
 
                 tabuleiro[DestinoL][DestinoC] = tabuleiro[l][c];
                 tabuleiro[l][c] = "   ";
-                turno += 2;
+                turno++;
 
             } else if (lol == 2) {
 
