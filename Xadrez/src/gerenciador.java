@@ -1,5 +1,5 @@
 public class gerenciador {
-    public static int adm(String[][] tabuleiro, String peca, int l, int c, int destinoL, int destinoC) {
+    public static int adm(String[][] tabuleiro, String peca, int l, int c, int destinoL, int destinoC, int[] roque) {
 
         switch (peca){
             case " P ":
@@ -21,7 +21,7 @@ public class gerenciador {
                  return Dama.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
             case " R ":
             case " r ":
-                 return Rei.validar(tabuleiro, peca, l,  c, destinoL, destinoC);
+                 return Rei.validar(tabuleiro, peca, l,  c, destinoL, destinoC, roque);
         }
         return 404;
     }
